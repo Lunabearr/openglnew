@@ -1,4 +1,4 @@
-#include <GL/glew.h>  // GLEW must be included first
+#include <GL/glew.h>  
 #include <GL/freeglut.h>
 
 #include "Person1.h.cpp"
@@ -6,17 +6,11 @@
 #include <cstdlib>
 #include <iostream>
 
-// ----------------------------------------
 // SCREEN SETTINGS
-// ----------------------------------------
-
 const int SCREEN_WIDTH = 1600;
 const int SCREEN_HEIGHT = 900;
 
-// ----------------------------------------
-// OBJECT POSITIONS
-// Matching Person 1's original coordinates
-// ----------------------------------------
+// OBJECT POSITIONS, Matching Person 1's original coordinates
 
 // Musical note
 const float NOTE_START_X = 20.0f;
@@ -30,10 +24,7 @@ const float RECORD_POSITION_Y = -25.0f;
 const float SPEAKER_POSITION_X = 360.0f;
 const float SPEAKER_POSITION_Y = -140.0f;
 
-
-// ----------------------------------------
 // TRANSFORMATION VARIABLES
-// ----------------------------------------
 
 // Musical note translation
 float noteOffsetY = 0.0f;
@@ -44,11 +35,7 @@ float recordRotation = 0.0f;
 // Speaker scaling
 float speakerScale = 1.0f;
 
-
-// ----------------------------------------
 // ANIMATION SETTINGS
-// ----------------------------------------
-
 const float NOTE_SPEED = 1.5f;
 const float NOTE_MAX_HEIGHT = 250.0f;
 
@@ -57,10 +44,7 @@ const float MIN_SCALE = 0.5f;
 const float MAX_SCALE = 2.0f;
 const float SCALE_STEP = 0.1f;
 
-
-// ----------------------------------------
 // DISPLAY FUNCTION
-// ----------------------------------------
 
 void display()
 {
@@ -73,11 +57,8 @@ void display()
     drawBackground();
 
 
-    // ====================================
     // OBJECT 1: MUSICAL NOTE
     // AUTOMATIC TRANSLATION
-    // ====================================
-
     glPushMatrix();
 
     glTranslatef(
@@ -91,11 +72,8 @@ void display()
     glPopMatrix();
 
 
-    // ====================================
     // OBJECT 2: VINYL RECORD
     // MOUSE-CLICK ROTATION
-    // ====================================
-
     glPushMatrix();
 
     glTranslatef(
@@ -116,11 +94,8 @@ void display()
     glPopMatrix();
 
 
-    // ====================================
     // OBJECT 3: SPEAKER
     // MOUSE-WHEEL SCALING
-    // ====================================
-
     glPushMatrix();
 
     glTranslatef(
@@ -145,17 +120,13 @@ void display()
 }
 
 
-// ----------------------------------------
-// AUTOMATIC TRANSLATION
-// Musical note moves upward
-// ----------------------------------------
+// AUTOMATIC TRANSLATION, Musical note moves upward
 
 void timer(int value)
 {
     noteOffsetY += NOTE_SPEED;
 
-    // Return note to starting position
-    // when it reaches the maximum height.
+    // Return note to starting position when it reaches the maximum height.
 
     if (noteOffsetY >= NOTE_MAX_HEIGHT)
     {
@@ -170,11 +141,8 @@ void timer(int value)
 }
 
 
-// ----------------------------------------
 // MOUSE CLICK ROTATION
 // Vinyl record rotates when clicked
-// ----------------------------------------
-
 void mouse(int button, int state, int x, int y)
 {
     if (button == GLUT_LEFT_BUTTON &&
@@ -192,12 +160,8 @@ void mouse(int button, int state, int x, int y)
     }
 }
 
-
-// ----------------------------------------
 // MOUSE WHEEL SCALING
 // Speaker becomes bigger or smaller
-// ----------------------------------------
-
 void mouseWheel(
     int wheel,
     int direction,
@@ -231,11 +195,8 @@ void mouseWheel(
 }
 
 
-// ----------------------------------------
 // KEYBOARD CONTROL
 // ESC exits the application
-// ----------------------------------------
-
 void keyboard(unsigned char key, int x, int y)
 {
     if (key == 27)
@@ -244,12 +205,8 @@ void keyboard(unsigned char key, int x, int y)
     }
 }
 
-
-// ----------------------------------------
 // WINDOW RESHAPE
 // Maintains scene proportions
-// ----------------------------------------
-
 void reshape(int width, int height)
 {
     if (height == 0)
@@ -288,11 +245,7 @@ void reshape(int width, int height)
     glLoadIdentity();
 }
 
-
-// ----------------------------------------
 // MAIN FUNCTION
-// ----------------------------------------
-
 int main(int argc, char** argv)
 {
     glutInit(&argc, argv);
